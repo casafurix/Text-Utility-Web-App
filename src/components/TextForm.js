@@ -25,14 +25,23 @@ export default function TextForm(props) {
 
   return (
     <>
-      <div className='container'>
+      <div
+        className='container'
+        style={{
+          color: props.mode === "dark" ? "white" : "black",
+        }}
+      >
         <h2>{props.heading}</h2>
         <div className='mb-3'>
           <label htmlFor='exampleFormControlTextarea1' className='form-label'>
             Text Box
           </label>
           <textarea
-            className='form-control bg-dark text-light mt-2'
+            className='form-control'
+            style={{
+              backgroundColor: props.mode === "dark" ? "#2c3035" : "white",
+              color: props.mode === "dark" ? "white" : "black",
+            }}
             value={text}
             onChange={handleOnChange}
             id='textbox'
@@ -40,84 +49,31 @@ export default function TextForm(props) {
             placeholder='Type here...'
           ></textarea>
         </div>
-
-        <button className='btn btn-primary mx-1' onClick={handleUpClick}>
-          UPPERCASE CONVERTER
-        </button>
-        <button className='btn btn-primary mx-1' onClick={handleLowClick}>
-          lowercase converter
-        </button>
-        <button className='btn btn-primary mx-1' onClick={handleExtraSpaces}>
-          Extra Spaces Remover
-        </button>
-        <button className='btn btn-primary mx-1' onClick={handleLowClick}>
-          lowercase converter
-        </button>
-        <button className='btn btn-primary mx-1' onClick={handleCopy}>
-          Copy Text
-        </button>
-
-        <div class='d-flex mt-4 text-{myStyle}'>
-          <div>
-            <p class='lead'>Volume</p>
-            <input
-              type='range'
-              min='0'
-              max='1'
-              value='1'
-              step='0.1'
-              id='volume'
-            />
-            <span id='volume-label' class='ms-2'>
-              1
-            </span>
-          </div>
-          <div class='mx-5'>
-            <p class='lead'>Rate</p>
-            <input
-              type='range'
-              min='0.1'
-              max='10'
-              value='1'
-              id='rate'
-              step='0.1'
-            />
-            <span id='rate-label' class='ms-2'>
-              1
-            </span>
-          </div>
-          <div>
-            <p class='lead'>Pitch</p>
-            <input
-              type='range'
-              min='0'
-              max='2'
-              value='1'
-              step='0.1'
-              id='pitch'
-            />
-            <span id='pitch-label' class='ms-2'>
-              1
-            </span>
-          </div>
-        </div>
-        <div class='mb-5'>
-          <button id='start' class='btn btn-success mt-5 me-3'>
-            Start
+        <div>
+          <button className='btn btn-primary mx-1' onClick={handleUpClick}>
+            UPPERCASE CONVERTER
           </button>
-          <button id='pause' class='btn btn-warning mt-5 me-3'>
-            Pause
+          <button className='btn btn-primary mx-1' onClick={handleLowClick}>
+            lowercase converter
           </button>
-          <button id='resume' class='btn btn-info mt-5 me-3'>
-            Resume
+          <button className='btn btn-primary mx-1' onClick={handleExtraSpaces}>
+            Extra Spaces Remover
           </button>
-          <button id='cancel' class='btn btn-danger mt-5 me-3'>
-            Cancel
+          <button className='btn btn-primary mx-1' onClick={handleLowClick}>
+            lowercase converter
+          </button>
+          <button className='btn btn-primary mx-1' onClick={handleCopy}>
+            Copy Text
           </button>
         </div>
       </div>
 
-      <div className='container my-4'>
+      <div
+        className='container my-4'
+        style={{
+          color: props.mode === "dark" ? "white" : "black",
+        }}
+      >
         <h3>Text Analysis</h3>
         <p>
           {text.split(" ").length} words and {text.length} characters
