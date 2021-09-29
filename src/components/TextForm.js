@@ -2,25 +2,34 @@ import React, { useState } from "react";
 
 export default function TextForm(props) {
   const [text, setText] = useState("");
+  const handleOnChange = (event) => {
+    setText(event.target.value);
+  };
   const handleUpClick = () => {
     let upText = text.toUpperCase();
     setText(upText);
+    props.showAlert("Converted to uppercase.", "primary");
   };
   const handleLowClick = () => {
     let lowText = text.toLowerCase();
     setText(lowText);
-  };
-  const handleOnChange = (event) => {
-    setText(event.target.value);
+    props.showAlert("Converted to lowercase.", "primary");
   };
   const handleExtraSpaces = () => {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
+    props.showAlert("extra spaces removed.", "primary");
   };
   const handleCopy = () => {
     let text = document.getElementById("textbox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    props.showAlert("copied to clipboard.", "primary");
+  };
+  const handleClearClick = () => {
+    let newText = "";
+    setText(newText);
+    props.showAlert("cleared.", "primary");
   };
 
   return (
@@ -59,11 +68,11 @@ export default function TextForm(props) {
           <button className='btn btn-primary mx-1' onClick={handleExtraSpaces}>
             Extra Spaces Remover
           </button>
-          <button className='btn btn-primary mx-1' onClick={handleLowClick}>
-            lowercase converter
-          </button>
           <button className='btn btn-primary mx-1' onClick={handleCopy}>
             Copy Text
+          </button>
+          <button className='btn btn-primary mx-1' onClick={handleClearClick}>
+            Clear Selection
           </button>
         </div>
       </div>
@@ -81,7 +90,7 @@ export default function TextForm(props) {
         <h3>Time Taken</h3>
         <p>{0.008 * text.split(" ").length} minutes to read</p>
         <h3>Preview</h3>
-        <p>{text}</p>
+        <p>{text.length > 0 ? text : "Enter your text for previewing"}</p>
       </div>
     </>
   );
